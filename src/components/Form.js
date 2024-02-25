@@ -9,8 +9,8 @@ function Form(props) {
         const updatedSubFormValues = [...subFormValues];
         updatedSubFormValues[index] = value;
         setSubFormValues(updatedSubFormValues)
-        console.log("handle form done")
-        console.log(subFormValues)
+        // console.log("handle form done")
+        // console.log(subFormValues)
     }
 
         function handleSubmit() {

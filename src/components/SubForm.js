@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // import PropTypes from 'prop-types';
 
 // SubForm.propTypes = {};
@@ -10,17 +10,18 @@ function SubForm({index, onChange}) {
         model: "",
         year: "",
     })
+    useEffect(() => {
+        onChange(index, record)
+    }, [record]);
 
     function handleChange(event) {
         const name = event.target.name
         const value = event.target.value
-        console.log("before", record)
+
         setRecord(prevState => ({
             ...prevState,
             [name]: value
         }))
-        console.log("after", record)
-        onChange(index, record)
 
     }
 
