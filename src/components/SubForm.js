@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import styles from "../app/page.module.css";
 // import PropTypes from 'prop-types';
 
 // SubForm.propTypes = {};
@@ -26,13 +27,19 @@ function SubForm({index, onChange}) {
     }
 
     return (
-        <div>
-            <label>BRAND: </label>
-            <input type={"text"} name="brand" onInput={handleChange}/>
-            <label>MODEL: </label>
-            <input type={"text"} name="model" onInput={handleChange}/>
-            <label>YEAR: </label>
-            <input type={"text"} name="year" onInput={handleChange}/>
+        <div className={styles['sub-form']}>
+            <div className={styles['input-group']}>
+                <label>BRAND: </label>
+                <input type={"text"} name="brand" onInput={handleChange}/>
+            </div>
+            <div className={styles['input-group']}>
+                <label>MODEL: </label>
+                <input type={"text"} name="model" onInput={handleChange}/>
+            </div>
+            <div className={styles['input-group']}>
+                <label>YEAR: </label>
+                <input type={"text"} name="year" onInput={handleChange}/>
+            </div>
         </div>
     );
 }

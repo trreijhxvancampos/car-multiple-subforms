@@ -1,7 +1,6 @@
 "use client"
-import Image from "next/image";
+import "./globals.css";
 import styles from "./page.module.css";
-import Modal from "@/components/Modal";
 import {useState} from "react";
 import Form from "@/components/Form";
 
@@ -12,9 +11,11 @@ function Home() {
     }
 
     return (
-        <main>
-            <h1>Hello</h1>
-            <button onClick={addForm}>Add form</button>
+        <main className={styles['container']}>
+            <h1>Input Car Details</h1>
+            <div>
+                <button onClick={addForm} className={styles['btn-add']}>Add form</button>
+            </div>
             <Form numForms={numForms}></Form>
         </main>
     );
