@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../app/page.module.css";
 
-function Modal({ isOpen, onClose, subFormValuesgit})  {
+function Modal({ isOpen, onClose, subFormValues})  {
     if (!isOpen) return null;
     return (
         <div className={styles['modal-overlay']}>
