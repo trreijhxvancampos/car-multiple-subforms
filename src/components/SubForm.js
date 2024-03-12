@@ -5,7 +5,6 @@ import styles from "../app/page.module.css";
 // SubForm.propTypes = {};
 
 function SubForm({index, onChange}) {
-
     const [record, setRecord] = useState({
         brand: "",
         model: "",
