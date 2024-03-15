@@ -1,51 +1,69 @@
 "use client"
 import "./globals.css";
 import styles from "./page.module.css";
-import {useState} from "react";
+import {useCallback, useState} from "react";
+import CarForm from "@/components/CarForm"
+import PartForm from "@/components/PartForm";
 import Modal from "@/components/Modal";
-import SubForm from "@/components/SubForm";
 
 function Home() {
-    const [numForms, setNumForms] = useState(1)
-    const [subFormValues, setSubFormValues] = useState([])
-    const [isOpen, setIsOpen] = useState(false);
+    console.log('_____________')
+    console.log('Home rendered')
 
-    const handleAddForm = () => {
-        setNumForms(numForms + 1)
-    }
-    const handleSubFormChange = (index, value) => {
-        let updatedSubFormValues = [...subFormValues];
-        updatedSubFormValues[index] = value;
-        setSubFormValues(updatedSubFormValues)
-    }
-    const handleSubmit = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [carDetails, setCarDetails] = useState({
+        brand: "",
+        make: "",
+        model: "",
+        year: "",
+    })
+    const [partsDetail, setPartsDetail] = useState([])
 
-    }
+    const updateCarDetails = useCallback((details) => {
+        setCarDetails(details)
+    }, [])
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
-    const closeModal = () => {
-        setIsOpen(false);
-    };
+    const updatePartsDetail = useCallback((index, details) => {
+        setPartsDetail(prevPartsDetail => {
+            const newPartsDetail = [...prevPartsDetail];
+            newPartsDetail[index] = details;
+            return newPartsDetail;
+        });
+    }, []);
+
+    const addPart = useCallback(() => {
+        setPartsDetail(prevPartsDetail => [...partsDetail, {
+                label: "",
+                type: "",
+                brand: "",
+                model: "",
+            }]
+        )
+    }, [partsDetail])
+    const toggleModal = () => {
+        setModalOpen(!modalOpen);
+    }
 
     return (
         <main className={styles['container']}>
-            <h1>Input Car Details (total: {numForms})</h1>
-            <div className={styles['form-container']}>
-                <button onClick={handleAddForm} className={styles['btn-add']}>Add form</button>
+            <CarForm
+                carDetails={carDetails}
+                updateCarDetails={updateCarDetails}>
+            </CarForm>
+            <PartForm
+                partsDetail={partsDetail}
+                updatePartsDetail={updatePartsDetail}
+                addPart={addPart}>
+            </PartForm>
+            <button className={styles['btn-submit']} onClick={toggleModal}>Submit</button>
 
-                <div className={styles['sub-forms-container']}>
-                    {Array.from({length: numForms}, (_, index) => (
-                        <SubForm key={index} index={index} onChange={handleSubFormChange}></SubForm>
-                    ))}
-
-                </div>
-                <button className={styles['btn-submit']} onClick={openModal}>Submit</button>
-
-            </div>
-
-            <Modal isOpen={isOpen} onClose={closeModal} subFormValues={subFormValues}></Modal>
+            {modalOpen &&
+                <Modal
+                    carDetails={carDetails}
+                    partsDetail={partsDetail}
+                    closeModal={toggleModal}>
+                </Modal>
+            }
         </main>
     );
 }

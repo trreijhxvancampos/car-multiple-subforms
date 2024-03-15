@@ -9,6 +9,7 @@
 .form-container {
     padding: 1em;
     background-color: white;
+    margin-bottom: 2em;
     border-radius: 20px;
     border: 2px solid #CCCCCC;
 
@@ -22,7 +23,16 @@
     max-height: 30em;
     overflow: auto;
 }
-
+.form {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    /*margin: 10px;*/
+    border-radius: 20px;
+    background-color: #E0E0E0;
+    border: 2px solid #DDDDDD;
+}
 .sub-form {
     display: flex;
     flex-direction: column;
@@ -37,6 +47,7 @@
 
 }
 
+
 .input-group {
     display: flex;
     justify-content: space-between;
@@ -46,15 +57,15 @@
 }
 
 .input-group label {
-    margin-right: 10px;
     font-weight: bold;
+    min-width: 70px;
 }
 
 .input-group input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-width: 100px;
+    width:90%;
 }
 
 
@@ -103,14 +114,17 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
+}
+.modal-content {
+    margin-top: 10px;
     max-height: 400px;
     overflow: auto;
 }
 
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*right: 0;*/
     background-color: transparent;
     border: none;
     cursor: pointer;
